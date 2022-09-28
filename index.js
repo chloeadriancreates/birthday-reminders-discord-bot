@@ -5,11 +5,17 @@ import { birthdays, sortBirthdays } from './variables/birthdays.js';
 import { nextBirthdays } from './commands/nextBirthdays.js';
 import { addBirthday } from './commands/addBirthday.js';
 
-// Create functions for different steps of addBirthday
 // Add regex to check name and date format
-// Put birthdays in separate file
+// Create function to check if last letter is an s
+// Finish building addBirthday with copy-paste
 // Add birthday to birthday array
+// Create functions for different steps of addBirthday
+// Attempt to make it completely using async/await
+// Attempt to make quick version of add-birthday with parameters?
 // Make it so bots aren't allowed to use commands
+// Add command to see birthdays per month
+// Make bot send reminder a week, three days and the day before a birthday
+// Check permissions and partials
 
 const client = new Client(clientOptions);
 
