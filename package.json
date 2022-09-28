@@ -1,5 +1,24 @@
 {
+  "name": "birthday-reminders-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commands": "node deploy-commands.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chloeadriancreates/birthday-reminders-discord-bot.git"
+  },
+  "author": "chloeadriancreates",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chloeadriancreates/birthday-reminders-discord-bot/issues"
+  },
+  "homepage": "https://github.com/chloeadriancreates/birthday-reminders-discord-bot#readme",
+  "type": "module",
   "dependencies": {
-    "discord.js": "^14.3.0"
+    "@discordjs/rest": "^1.1.0",
+    "discord.js": "^14.4.0-dev.1663675488-5048a3d.0"
   }
 }
