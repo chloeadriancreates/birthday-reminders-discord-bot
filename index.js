@@ -6,10 +6,9 @@ import { nextBirthdays } from './commands/nextBirthdays.js';
 import { addBirthday } from './commands/addBirthday.js';
 
 // Add options to modify either field at last step in addBirthday (maybe)
-// Give stop option somehow
-// I do think using a database would be smarter (maybe look into MongoDB)
 // Add an option if there are less than three birthdays or no birthdays at all in nextBirthdays
 // Make nextBirthdays less verbose
+// I do think using a database would be smarter (maybe look into MongoDB)
 // Attempt to make quick version of addBirthday with parameters?
 // Make it so bots aren't allowed to use commands
 // Add command to see birthdays per month

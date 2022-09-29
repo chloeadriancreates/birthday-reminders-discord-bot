@@ -5,12 +5,18 @@ import { birthdays, sortBirthdays } from "../variables/birthdays.js";
 const timeLimit = 600_000;
 const today = new Date();
 
+async function stop(interaction) {
+    interaction.followUp("The process was stopped. Please use /add-birthday if you'd like to try again!");
+}
+
 async function requestValidation(interaction, name, possessiveName, birthday, filter) {
     const responseMessages = await interaction.channel.awaitMessages({ filter, max: 1, time: timeLimit, errors: ['time'] })
     try {
         const response = responseMessages.first().content;
         
-        if(response.toLowerCase().includes("yes")) {
+        if(response.toLowerCase().includes("/stop-birthday")) {
+            stop(interaction);
+        } else if(response.toLowerCase().includes("yes")) {
             birthdays.push({
                 name: name,
                 date: birthday
@@ -34,7 +40,9 @@ async function requestDate(interaction, name, possessiveName, filter) {
         const date = dateMessages.first().content;
         const regexDate = /^[0-9]{2}\/[0-9]{2}$/;
         
-        if(date.match(regexDate)) {
+        if(date.toLowerCase().includes("/stop-birthday")) {
+            stop(interaction);
+        } else if(date.match(regexDate)) {
             const dateArray = date.split("/");
             const birthdayDay = Number(dateArray[1]);
             const birthdayMonth = Number(dateArray[0] - 1);
@@ -63,11 +71,13 @@ async function requestName(interaction) {
     const filter = m => interaction.user.id == m.author.id;
     const nameMessages = await interaction.channel.awaitMessages({ filter, max: 1, time: timeLimit, errors: ['time'] })
     try {
-        const regexName = /^[a-zA-ZÀ-ú0-9\s\-_'|,.]*$/;
         const name = nameMessages.first().content;
-        const possessiveName = possessive(name);
-
-        if(name.match(regexName)) {
+        const regexName = /^[a-zA-ZÀ-ú0-9\s\-_'|,.]*$/;
+        
+        if(name.toLowerCase().includes("/stop-birthday")) {
+            stop(interaction);
+        } else if(name.match(regexName)) {
+            const possessiveName = possessive(name);
             interaction.followUp(`Awesome! When is ${possessiveName} birthday? (Please use the MM/DD format – for example, today is ${today.toLocaleDateString('en-US', shortDateFormat)})`)
             requestDate(interaction, name, possessiveName, filter);
         } else {
@@ -80,6 +90,6 @@ async function requestName(interaction) {
 }
 
 export async function addBirthday(interaction) {
-    interaction.reply({ content: "Let's register a new birthday! What's the person's name? (You can use their username if you'd like, but please don't use @ so I don't tag them repeatedly)" })
+    interaction.reply({ content: `Let's register a new birthday! What's the person's name? You can use their username if you'd like, but please don't use @ so I don't tag them repeatedly. \n(If you'd like to stop the process at any point, please type "/stop-birthday")` })
     requestName(interaction);
 }
