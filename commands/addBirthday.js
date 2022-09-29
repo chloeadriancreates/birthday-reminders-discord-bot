@@ -5,7 +5,7 @@ import { birthdays, sortBirthdays } from "../variables/birthdays.js";
 const timeLimit = 600_000;
 const today = new Date();
 
-async function stop(interaction) {
+function stop(interaction) {
     interaction.followUp("The process was stopped. Please use /add-birthday if you'd like to try again!");
 }
 

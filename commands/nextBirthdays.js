@@ -1,12 +1,22 @@
-import { verboseDateFormat } from '../variables/dateFormats.js'
+import { mediumDateFormat } from '../variables/dateFormats.js'
 
-export async function nextBirthdays(interaction, birthdays) {
-	const birthday1Name = birthdays[0].name;
-	const birthday1Date = birthdays[0].date.toLocaleDateString('en-us', verboseDateFormat);
-	const birthday2Name = birthdays[1].name;
-	const birthday2Date = birthdays[1].date.toLocaleDateString('en-us', verboseDateFormat);
-	const birthday3Name = birthdays[2].name;
-	const birthday3Date = birthdays[2].date.toLocaleDateString('en-us', verboseDateFormat);
+export function nextBirthdays(interaction, birthdays) {
+	let reply;
 
-	await interaction.reply(`Here are the next three server birthdays! \n- ${birthday1Name}'s birthday on ${birthday1Date} \n- ${birthday2Name}'s birthday on ${birthday2Date} \n- ${birthday3Name}'s birthday on ${birthday3Date}`);
+	switch(birthdays.length) {
+		case 0:
+			reply = "No birthdays have been configured for this server. You can use /add-birthday to add some!";
+			break;
+		case 1:
+			reply = `Here is the next server birthday! \n- ${birthdays[0].name}: ${birthdays[0].date.toLocaleDateString('en-us', mediumDateFormat)}`;
+			break;
+		case 2:
+			reply = `Here are the next server birthdays! \n- ${birthdays[0].name}: ${birthdays[0].date.toLocaleDateString('en-us', mediumDateFormat)} \n- ${birthdays[1].name}: ${birthdays[1].date.toLocaleDateString('en-us', mediumDateFormat)}`;
+			break;
+		default:
+			reply = `Here are the next server birthdays! \n- ${birthdays[0].name}: ${birthdays[0].date.toLocaleDateString('en-us', mediumDateFormat)} \n- ${birthdays[1].name}: ${birthdays[1].date.toLocaleDateString('en-us', mediumDateFormat)} \n- ${birthdays[2].name}: ${birthdays[2].date.toLocaleDateString('en-us', mediumDateFormat)}`
+			break;
+	}
+
+	interaction.reply(reply);
 };
