@@ -5,16 +5,16 @@ import { birthdays, sortBirthdays } from './variables/birthdays.js';
 import { nextBirthdays } from './commands/nextBirthdays.js';
 import { addBirthday } from './commands/addBirthday.js';
 
-// Add regex to check name and date format
-// Create function to check if last letter is an s
-// Finish building addBirthday with copy-paste
-// Add birthday to birthday array
-// Create functions for different steps of addBirthday
-// Attempt to make it completely using async/await
-// Attempt to make quick version of add-birthday with parameters?
+// Add options to modify either field at last step in addBirthday (maybe)
+// Give stop option somehow
+// I do think using a database would be smarter (maybe look into MongoDB)
+// Add an option if there are less than three birthdays or no birthdays at all in nextBirthdays
+// Make nextBirthdays less verbose
+// Attempt to make quick version of addBirthday with parameters?
 // Make it so bots aren't allowed to use commands
 // Add command to see birthdays per month
 // Make bot send reminder a week, three days and the day before a birthday
+// At some point, should check filter in addBirthday() is working even if someone else sends a message in the meantime
 // Check permissions and partials
 
 const client = new Client(clientOptions);
